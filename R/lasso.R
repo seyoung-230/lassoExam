@@ -29,7 +29,7 @@
 #' where \code{df} is the number of nonzero coefficients.
 #'
 #'
-lasso = function(X, y, lambda, max_iter = 1000, tol = 1e-5, scaling = TRUE)
+lasso_cda = function(X, y, lambda, max_iter = 1000, tol = 1e-5, scaling = TRUE)
 {
   n = nrow(X)
   p = ncol(X)

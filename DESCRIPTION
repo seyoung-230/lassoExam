@@ -2,12 +2,10 @@ Package: lassoExam
 Type: Package
 Title: LASSO Regression via CDA
 Version: 0.1.0
-Authors@R: c(
-    person(
-      "Lee SeYoung",
-      email = "220254005@gmail.com"
-    )
-  )
+Authors@R: 
+    person("SeYoung", "Lee",
+           email = "220254005@gmail.com",
+           role = c("aut", "cre"))
 Description: Provides LASSO regression estimation using the coordinate descent algorithm (CDA). Includes soft-thresholding updates, optional standardization, and BIC computation for model selection.
 License: What license is it under?
 Encoding: UTF-8

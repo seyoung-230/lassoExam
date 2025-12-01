@@ -15,7 +15,7 @@ y = X %*% beta_true + rnorm(n, 0, 0.1)
 
 lambda_list = c(0.01, 1, 3, 5, 10)
 results = lapply(lambda_list, function(lam) {
-  lasso_cda_BIC(X, y, lambda = lam, scaling = TRUE)
+  lasso_cda(X, y, lambda = lam, scaling = TRUE)
 })
 
 results
