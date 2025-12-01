@@ -8,8 +8,7 @@ Authors@R: c(
       email = "220254005@gmail.com"
     )
   )
-Description: Provides LASSO regression estimation using the coordinate descent algorithm (CDA). 
-Includes soft-thresholding updates, optional standardization, and BIC computation for model selection.
+Description: Provides LASSO regression estimation using the coordinate descent algorithm (CDA). Includes soft-thresholding updates, optional standardization, and BIC computation for model selection.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
