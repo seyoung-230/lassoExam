@@ -50,36 +50,36 @@ lasso_cda_r = function(X, y, lambda, max_iter = 1000, tol = 1e-5, scaling = TRUE
 {
   n = nrow(X)
   p = ncol(X)
-  
+
   if (scaling) {
     X = scale(X)
     y = y - mean(y)
   }
-  
+
   beta = rep(0, p)
   beta_old = beta
-  
-  r = y   
-  
+
+  r = y
+
   for (iter in 1:max_iter) {
     max_change = 0
-    
+
     for (j in 1:p) {
       X_j = X[, j]
       X_j_norm2 = sum(X_j^2)
       rho = sum(X_j * (r + X_j * beta[j]))
-      
+
       beta_old_j = beta[j]
       beta[j] = ST(rho / X_j_norm2, lambda / X_j_norm2)
-      
+
       r = r + X_j * (beta_old_j - beta[j])
-      
+
       max_change = max(max_change, abs(beta[j] - beta_old_j))
     }
-    
+
     if (max_change < tol) break
   }
-  
+
   return(beta)
 }
 
@@ -88,41 +88,41 @@ lasso_cda_BIC = function(X, y, lambda, max_iter = 1000, tol = 1e-5, scaling = TR
 {
   n = nrow(X)
   p = ncol(X)
-  
+
   if (scaling) {
     X = scale(X)
     y = y - mean(y)
   }
-  
+
   beta = rep(0, p)
   beta_old = beta
-  
-  r = y   
-  
+
+  r = y
+
   for (iter in 1:max_iter) {
     max_change = 0
-    
+
     for (j in 1:p) {
       X_j = X[, j]
       X_j_norm2 = sum(X_j^2)
       rho = sum(X_j * (r + X_j * beta[j]))
-      
+
       beta_old_j = beta[j]
       beta[j] = ST(rho / X_j_norm2, lambda / X_j_norm2)
-      
+
       r = r + X_j * (beta_old_j - beta[j])
-      
+
       max_change = max(max_change, abs(beta[j] - beta_old_j))
     }
-    
+
     if (max_change < tol) break
   }
-  
+
   y_hat = X %*% beta
   RSS = sum((y - y_hat)^2)
   sigma2 = RSS / n
   df = sum(beta != 0)
-  
+
   BIC = n * log(sigma2) + df * log(n)
   return(list(beta = beta, BIC = BIC))
 }
@@ -144,9 +144,9 @@ result_BIC = numeric(length(lambda_list))
 
 for (i in 1:length(lambda_list)) {
   lam = lambda_list[i]
-  
+
   out = lasso_cda_BIC(X, y, lambda = lam, scaling = TRUE)
-  
+
   result_beta[[i]] = out$beta
   result_BIC[i] = out$BIC
 }
