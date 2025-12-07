@@ -63,13 +63,7 @@ lasso_cda = function(X, y, lambda, max_iter = 1000, tol = 1e-5, scaling = TRUE)
     if (max_change < tol) break
   }
 
-  y_hat = X %*% beta
-  RSS = sum((y - y_hat)^2)
-  sigma2 = RSS / n
-  df = sum(beta != 0)
-
-  BIC = n * log(sigma2) + df * log(n)
-  return(list(beta = beta, BIC = BIC))
+  return(beta)
 }
 
 #' ST
