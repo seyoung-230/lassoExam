@@ -71,3 +71,10 @@ lasso_cda = function(X, y, lambda, max_iter = 1000, tol = 1e-5, scaling = TRUE)
   BIC = n * log(sigma2) + df * log(n)
   return(list(beta = beta, BIC = BIC))
 }
+
+#' ST
+ST = function(a, lambda){
+  if (a > lambda) return(a - lambda)
+  if (a < -lambda) return(a + lambda)
+  return(0)
+}
